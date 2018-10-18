@@ -1,5 +1,7 @@
 <?php
 
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,5 +14,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $users = User::all();
+    return view('users', ['users'=>$users]);
 });
