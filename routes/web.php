@@ -17,3 +17,6 @@ Route::get('/', function () {
     $users = User::all();
     return view('users', ['users'=>$users]);
 });
+
+Route::post('/app/store/{user}/note', 'UserController@store');
+

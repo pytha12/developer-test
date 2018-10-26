@@ -27,4 +27,20 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * establish one to many relationship between user and notes...
+     */
+    public function notes () {
+        return $this->hasMany(UserNote::class);
+    }
+
+    /**
+     * Method to add new Note to the user_notes table.
+     *
+     * @var text(string)
+     */
+    public function addNote ($note) {
+        return $this->notes()->create(compact('note'));
+    }
 }
