@@ -35957,9 +35957,7 @@ var userApp = {
 					data: __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#userNoteForm").serialize(),
 					success: function success(msg) {
 
-						if (msg.response == "success") {
-							location.reload();
-						}
+						location.reload();
 					},
 					error: function error(e) {
 						console.error(e);

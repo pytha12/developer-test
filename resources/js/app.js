@@ -60,16 +60,14 @@ var userApp = {
 			        data: $("#userNoteForm").serialize(), 
 			        success: function(msg) {
 			        	
-			            if (msg.response == "success") {
-			            	location.reload();
-			            } 
+			            location.reload();
 			        },
 			        error: function (e) {
 			        	console.error(e);
 			        }
 			    });
 			    $('#note').empty();
-			    $('#exampleModal').modal('hide');
+			    $('#userModal').modal('hide');
 			} else {
 				// invalid display errors..
 			}
