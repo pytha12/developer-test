@@ -18,7 +18,7 @@
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
                         <td class="text-right">
-                            <a href="" class="btn btn-sm btn-light usn-anch" id="{{$user->id}}" required>
+                            <a href="usernote/{{$user->id}}" class="btn btn-sm btn-light">
                                 <i class="fas fa-arrow-right"></i>
                             </a>
                         </td>

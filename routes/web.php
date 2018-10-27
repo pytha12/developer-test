@@ -13,10 +13,12 @@ use App\User;
 |
 */
 
-Route::get('/', function () {
-    $users = User::all();
-    return view('users', ['users'=>$users]);
-});
+//Route::get('/', function () {
+    //$users = User::all();
+    //return view('users', ['users'=>$users]);
+    //return view('users');
+//});
+Route::get('/', 'UserController@index');
 
-Route::post('/app/store/{user}/note', 'UserController@store');
+Route::resource('usernote', 'UserController');
 

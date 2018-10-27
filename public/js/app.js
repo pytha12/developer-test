@@ -35932,7 +35932,7 @@ var userApp = {
 		__WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).on('click', ".usn-anch", function (e) {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			var uname = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).closest('tr').find('td:first-child').text();
+			var uname = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).attr('data-user_name');
 			var user_id = __WEBPACK_IMPORTED_MODULE_0_jquery___default()(this).attr('id');
 
 			// set hidden variables..
@@ -35942,7 +35942,7 @@ var userApp = {
 			__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#note').empty();
 
 			// show modal
-			__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#exampleModal').modal('show');
+			__WEBPACK_IMPORTED_MODULE_0_jquery___default()('#userModal').modal('show');
 		});
 	},
 	validateAndPost: function validateAndPost() {
@@ -35953,11 +35953,12 @@ var userApp = {
 
 				__WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
 					type: "POST",
-					url: "/app/store/" + user_id + "/note",
+					url: "/usernote",
 					data: __WEBPACK_IMPORTED_MODULE_0_jquery___default()("#userNoteForm").serialize(),
 					success: function success(msg) {
+
 						if (msg.response == "success") {
-							alert("User note was added successfull");
+							location.reload();
 						}
 					},
 					error: function error(e) {

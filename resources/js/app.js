@@ -35,7 +35,7 @@ var userApp = {
 		$(document).on('click', ".usn-anch", function(e) {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			var uname = $(this).closest('tr').find('td:first-child').text();
+			var uname = $(this).attr('data-user_name');
 			var user_id = $(this).attr('id');
 
 			// set hidden variables..
@@ -45,7 +45,7 @@ var userApp = {
 			$('#note').empty();
 
 			// show modal
-			$('#exampleModal').modal('show');
+			$('#userModal').modal('show');
 		});
 	},
 	validateAndPost: function () {
@@ -56,11 +56,12 @@ var userApp = {
 			
     			$.ajax({
 			        type: "POST",
-			        url: "/app/store/"+user_id+"/note",
+			        url: "/usernote",
 			        data: $("#userNoteForm").serialize(), 
 			        success: function(msg) {
+			        	
 			            if (msg.response == "success") {
-			            	alert("User note was added successfull");
+			            	location.reload();
 			            } 
 			        },
 			        error: function (e) {

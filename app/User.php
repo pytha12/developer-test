@@ -19,6 +19,8 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    protected $guarded = [];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -40,7 +42,7 @@ class User extends Authenticatable
      *
      * @var text(string)
      */
-    public function addNote ($note) {
-        return $this->notes()->create(compact('note'));
+    public function addNote ($note, $user_id) {
+        return UserNote::create(['note' => $note, 'user_id' => $user_id]);
     }
 }

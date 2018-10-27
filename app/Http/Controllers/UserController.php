@@ -1,7 +1,5 @@
 <?php
 
-use App\User;
-use App\UserNote;
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -13,9 +11,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(\App\User $user)
     {
-        //
+        $users = $user::all();
+        return view('userNotes.users', ['users'=>$users]);
     }
 
     /**
@@ -34,12 +33,14 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(User $user)
+    public function store(\App\User $user)
     {   
-
-        request()->validate(['note' => 'required|min:3']);
-
-        if (!$user->addNote(request('note'))) {
+       request()->validate([
+            'note' => 'required|min:3', 
+            'user_id' => 'required'
+        ]);
+       
+        if (!$user->addNote(request('note'), request('user_id'))) {
             App::abort(500, 'Error');
         }
 
@@ -56,7 +57,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $notes = \App\UserNote::whereUserId($id)->get();  
+        $user = \App\User::find($id);
+
+        return view('userNotes.notes', compact('notes', 'user'));
     }
 
     /**
